@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { ProductList } from './products/product-list.component';
 
 @Component({
-    selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    selector: 'pm-app',
+    templateUrl: 'app/app.component.html',
+    directives: [ProductList]
 })
-export class AppComponent { }
+export class AppComponent { 
+    pageTitle:string = 'Acme Product Management';
+}
