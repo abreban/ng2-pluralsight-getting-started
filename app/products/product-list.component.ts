@@ -1,16 +1,21 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { IProduct } from './product';
+import { ProductFilterPipe } from './product-filter.pipe';
 
 @Component({
     selector: 'pm-products',
-    templateUrl: 'app/products/product-list.component.html'
+    templateUrl: 'app/products/product-list.component.html',
+    styleUrls:['app/products/product-list.component.css'],
+    pipes:[ProductFilterPipe]
 })
-export class ProductList{
+export class ProductList implements OnInit{
 
     pageTitle: string = 'Product List';
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
-    products: any[] = [
+    listFilter:string = 'cart';
+    products: IProduct[] = [
     {
         "productId": 1,
         "productName": "Leaf Rake",
@@ -65,6 +70,10 @@ export class ProductList{
     toggleImage(): void {
         this.showImage = !this.showImage;
     }
-    constructor() { }    
+    constructor() { }  
+
+    ngOnInit(){
+        console.log('message on init');
+    }  
 
 }
