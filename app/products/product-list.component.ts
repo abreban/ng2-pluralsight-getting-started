@@ -1,12 +1,14 @@
 import { Component, OnInit} from '@angular/core';
 import { IProduct } from './product';
 import { ProductFilterPipe } from './product-filter.pipe';
+import { StarComponent } from '../shared/star.component';
 
 @Component({
     selector: 'pm-products',
     templateUrl: 'app/products/product-list.component.html',
     styleUrls:['app/products/product-list.component.css'],
-    pipes:[ProductFilterPipe]
+    pipes:[ProductFilterPipe],
+    directives: [StarComponent]
 })
 export class ProductList implements OnInit{
 
@@ -14,7 +16,7 @@ export class ProductList implements OnInit{
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
-    listFilter:string = 'cart';
+    listFilter:string = '';
     products: IProduct[] = [
     {
         "productId": 1,
@@ -75,5 +77,7 @@ export class ProductList implements OnInit{
     ngOnInit(){
         console.log('message on init');
     }  
-
+    onRatingClicked(message:string) :void{
+        this.pageTitle = 'Product List: ' + message;
+    }
 }
