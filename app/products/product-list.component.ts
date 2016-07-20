@@ -20,13 +20,17 @@ export class ProductList implements OnInit{
     showImage: boolean = false;
     listFilter:string = '';
     products: IProduct[];
+    errorMessage :string;
     toggleImage(): void {
         this.showImage = !this.showImage;
     }
     constructor( private _productService : ProductService) { }  
 
     ngOnInit(){
-        this.products = this._productService.getProducts();
+        this._productService.getProducts()
+            .subscribe(
+                products =>this.products = products,
+                error =>this.errorMessage = <any>error);            
         console.log('message on init');
     }  
     onRatingClicked(message:string) :void{
